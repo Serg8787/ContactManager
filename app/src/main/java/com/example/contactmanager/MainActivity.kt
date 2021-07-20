@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
             contactList = arguments?.get("listEdit") as ArrayList<Contact>
         }
 
-
         adapter = ContactAdapter(contactList, this, this)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
