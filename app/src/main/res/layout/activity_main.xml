@@ -21,8 +21,14 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/frameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints" />
+    <FrameLayout
+        android:id="@+id/frameAdd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints" />

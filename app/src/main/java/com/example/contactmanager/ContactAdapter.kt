@@ -17,9 +17,9 @@ class ContactAdapter(val contactList:ArrayList<Contact>, val context:Context,val
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.avatar.setImageBitmap(contactList[position].avatar)
-        holder.name.text = contactList[position].contactName
-        holder.lastName.text = contactList[position].contactLastName
-        holder.email.text = contactList[position].contactEmail
+        holder.name.text = contactList[position].name
+        holder.lastName.text = contactList[position].lastName
+        holder.email.text = contactList[position].email
         holder.editDeleteItem.setOnClickListener { callback.itemContactSelected(position) }
     }
 
@@ -33,10 +33,11 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
     var editDeleteItem: ImageView
 
     init {
-        name = v.findViewById(R.id.tvNameItem)
-        lastName = v.findViewById<TextView>(R.id.tvLastNameItem)
-        email = v.findViewById(R.id.tvEmailItem)
         avatar = v.findViewById(R.id.ivAvatarItem)
+        name = v.findViewById(R.id.tvNameItem)
+        lastName = v.findViewById(R.id.tvLastNameItem)
+        email = v.findViewById(R.id.tvEmailItem)
+
         editDeleteItem = v.findViewById(R.id.ivEditDeleteItem)
     }
 }
@@ -44,3 +45,4 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
         fun itemContactSelected(index:Int)
         
     }
+
