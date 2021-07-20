@@ -35,17 +35,13 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
                 .add(R.id.frameAdd, FragmentAddContact.newInstance(contactList))
                 .addToBackStack(null).commit()
         }
-
-
-
     }
 
     override fun itemContactSelected(index: Int) {
-        TODO("Not yet implemented")
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frameEdit,FragmentEdit.newInstance(contactList,index)).addToBackStack(null).commit()
+
     }
-
-
-
 
 
 }
