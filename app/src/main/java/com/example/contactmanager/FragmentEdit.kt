@@ -1,10 +1,13 @@
 package com.example.contactmanager
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_add_contact.*
+import kotlinx.android.synthetic.main.fragment_edit.*
 import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
@@ -20,16 +23,10 @@ var position by Delegates.notNull<Int>()
  * create an instance of this fragment.
  */
 class FragmentEdit : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -40,23 +37,28 @@ class FragmentEdit : Fragment() {
         return inflater.inflate(R.layout.fragment_edit, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btAddContactEdit.setOnClickListener {
+            val name = etNameEdit.text.toString()
+            val lastName = etLastNameEdit.text.toString()
+            val email = etEmailEdit.text.toString()
+            list[position].name = name
+            list[position].lastName = lastName
+            list[position].email = email
+            list[position].avatar = null
+            val intent1 = Intent(context,MainActivity::class.java)
+            intent1.putExtra("listEdit",list)
+            startActivity(intent1)
+        }
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentEdit.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(contactList: ArrayList<Contact>, index: Int) =
             FragmentEdit().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
                 list = contactList
                 position = index
             }

@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
         contactList.add(acontact)
 
         val arguments = intent.extras
-        if(arguments!=null){
-            contactList = arguments.get("list") as ArrayList<Contact>
+        if(arguments?.get("list")!=null ){
+         contactList = arguments.get("list") as ArrayList<Contact>
+        } else if(arguments?.get("listEdit")!= null) {
+            contactList = arguments?.get("listEdit") as ArrayList<Contact>
         }
-
-
 
 
         adapter = ContactAdapter(contactList, this, this)
