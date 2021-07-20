@@ -15,6 +15,7 @@
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constRoot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -69,6 +70,16 @@
                 app:layout_constraintStart_toEndOf="@+id/ivAvatarItem"
                 app:layout_constraintTop_toBottomOf="@+id/tvLastNameItem"
                 tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/tvPhoneItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatarItem"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmailItem"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -82,7 +93,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/icons8_edit_24"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
@@ -91,7 +102,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:src="@drawable/ic_delete"
+                android:src="@drawable/icons8_delete_30"
                 app:layout_constraintTop_toBottomOf="@id/ivEditItem"
                 tools:ignore="MissingConstraints" />
 

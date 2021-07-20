@@ -2,6 +2,7 @@ package com.example.contactmanager
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,5 +43,9 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
 
     }
 
+    override fun conatactAllView(index: Int) {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frameAllView, FragmentAllView.newInstance("1","1")).addToBackStack(null).commit()
+    }
 
 }

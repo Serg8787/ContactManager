@@ -27,6 +27,9 @@ class ContactAdapter(val contactList:ArrayList<Contact>, val context:Context,val
         holder.editItem.setOnClickListener {
             callback.itemContactSelected(position)
         }
+        holder.constRoot.setOnClickListener{
+            callback.conatactAllView(position)
+        }
 
         holder.deleteItem.setOnClickListener {
             val builder = AlertDialog.Builder(context)
@@ -58,6 +61,7 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
     var avatar: ImageView
     var editItem: ImageView
     var deleteItem: ImageView
+    var constRoot:View
 
     init {
         avatar = v.findViewById(R.id.ivAvatarItem)
@@ -66,10 +70,12 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
         email = v.findViewById(R.id.tvEmailItem)
         editItem = v.findViewById(R.id.ivEditItem)
         deleteItem = v.findViewById(R.id.ivDeleteItem)
+        constRoot = v.findViewById(R.id.constRoot)
     }
 }
     interface ContactCallBack{
         fun itemContactSelected(index:Int)
+        fun conatactAllView(index: Int)
         
     }
 
