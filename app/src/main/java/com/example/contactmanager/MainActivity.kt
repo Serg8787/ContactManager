@@ -2,7 +2,6 @@ package com.example.contactmanager
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,15 +15,13 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val acontact = Contact(null,"Петя","Федор","лавы")
-        contactList.add(acontact)
-
         val arguments = intent.extras
         if(arguments?.get("list")!=null ){
          contactList = arguments.get("list") as ArrayList<Contact>
         } else if(arguments?.get("listEdit")!= null) {
             contactList = arguments?.get("listEdit") as ArrayList<Contact>
         }
+
 
         adapter = ContactAdapter(contactList, this, this)
         recycler.layoutManager = LinearLayoutManager(this)
@@ -43,9 +40,10 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
 
     }
 
-    override fun conatactAllView(index: Int) {
+    override fun contactAllView(index: Int) {
+        val contact = contactList[index]
         supportFragmentManager.beginTransaction()
-            .add(R.id.frameAllView, FragmentAllView.newInstance("1","1")).addToBackStack(null).commit()
+            .add(R.id.frameAllView, FragmentAllView.newInstance(contact)).addToBackStack(null).commit()
     }
 
 }

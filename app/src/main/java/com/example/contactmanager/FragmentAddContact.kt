@@ -40,7 +40,9 @@ lateinit var list:ArrayList<Contact>
             val name = etNameAdd.text.toString()
             val lastName = etLastNameAdd.text.toString()
             val email = etEmailAdd.text.toString()
-            list.add(Contact(null,name,lastName,email))
+            val phone = etPhoneAdd.text.toString()
+
+            list.add(Contact(null,name,lastName,email,phone))
             val intent = Intent(context,MainActivity::class.java)
             intent.putExtra("list",list)
             startActivity(intent)

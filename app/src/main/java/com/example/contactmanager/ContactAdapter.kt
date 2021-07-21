@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ContactAdapter(val contactList:ArrayList<Contact>, val context:Context,val callback:ContactCallBack):
@@ -23,12 +22,12 @@ class ContactAdapter(val contactList:ArrayList<Contact>, val context:Context,val
         holder.avatar.setImageBitmap(contactList[position].avatar)
         holder.name.text = contactList[position].name
         holder.lastName.text = contactList[position].lastName
-        holder.email.text = contactList[position].email
+        holder.phone.text = contactList[position].phone
         holder.editItem.setOnClickListener {
             callback.itemContactSelected(position)
         }
         holder.constRoot.setOnClickListener{
-            callback.conatactAllView(position)
+            callback.contactAllView(position)
         }
 
         holder.deleteItem.setOnClickListener {
@@ -57,7 +56,7 @@ class ContactAdapter(val contactList:ArrayList<Contact>, val context:Context,val
 class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
     var name: TextView
     var lastName: TextView
-    var email: TextView
+    var phone: TextView
     var avatar: ImageView
     var editItem: ImageView
     var deleteItem: ImageView
@@ -67,7 +66,7 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
         avatar = v.findViewById(R.id.ivAvatarItem)
         name = v.findViewById(R.id.tvNameItem)
         lastName = v.findViewById(R.id.tvLastNameItem)
-        email = v.findViewById(R.id.tvEmailItem)
+        phone = v.findViewById(R.id.tvPhoneItem)
         editItem = v.findViewById(R.id.ivEditItem)
         deleteItem = v.findViewById(R.id.ivDeleteItem)
         constRoot = v.findViewById(R.id.constRoot)
@@ -75,7 +74,7 @@ class ContactViewHolder(val v: View): RecyclerView.ViewHolder(v) {
 }
     interface ContactCallBack{
         fun itemContactSelected(index:Int)
-        fun conatactAllView(index: Int)
+        fun contactAllView(index: Int)
         
     }
 

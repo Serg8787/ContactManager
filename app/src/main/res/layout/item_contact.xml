@@ -42,6 +42,7 @@
                 android:textColor="@color/black"
                 android:textSize="19sp"
                 android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivAvatarItem"
                 tools:ignore="MissingConstraints" />
@@ -61,16 +62,6 @@
 
 
             <TextView
-                android:id="@+id/tvEmailItem"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivAvatarItem"
-                app:layout_constraintTop_toBottomOf="@+id/tvLastNameItem"
-                tools:ignore="MissingConstraints" />
-            <TextView
                 android:id="@+id/tvPhoneItem"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -78,7 +69,7 @@
                 android:text="Phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivAvatarItem"
-                app:layout_constraintTop_toBottomOf="@+id/tvEmailItem"
+                app:layout_constraintTop_toBottomOf="@+id/tvLastNameItem"
                 tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
