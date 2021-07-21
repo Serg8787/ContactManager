@@ -1,6 +1,7 @@
 package com.example.contactmanager
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class FragmentAllView : Fragment() {
     lateinit var lastName:String
     lateinit var email:String
     lateinit var phone:String
+    lateinit var avatar: Bitmap
 
     lateinit var list:ArrayList<Contact>
 
@@ -42,6 +44,7 @@ class FragmentAllView : Fragment() {
         tvLastNameAllView.text = lastName
         tvEmailAllView.text = email
         tvPhoneAlliew.text = phone
+        ivAvatarAllView.setImageBitmap(avatar)
         btContactAllView.setOnClickListener {
             val inent = Intent(context,MainActivity::class.java)
             inent.putExtra("listAllView", list)
@@ -58,6 +61,7 @@ class FragmentAllView : Fragment() {
                 email = contact.email.toString()
                 phone = contact.phone.toString()
                 list = contactList
+                avatar = contact.avatar as Bitmap
             }
     }
 }

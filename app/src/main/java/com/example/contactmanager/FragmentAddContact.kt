@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -61,7 +60,7 @@ lateinit var list:ArrayList<Contact>
             val email = etEmailAdd.text.toString()
             val phone = etPhoneAdd.text.toString()
 
-            list.add(Contact(avatar = null,name = name,lastName,email,phone))
+            list.add(Contact(avatar = null, name = name,lastName,email,phone))
             val intent = Intent(context,MainActivity::class.java)
             intent.putExtra("list",list)
             startActivity(intent)
@@ -85,9 +84,6 @@ lateinit var list:ArrayList<Contact>
             bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,imageUri)
             ivAvatarAdd.setImageBitmap(bitmap)
 
-        } else if(requestCode==PICK_IMAGE2 && resultCode== AppCompatActivity.RESULT_OK){
-            bitmap = data?.extras?.get("data") as Bitmap
-            ivAvatarAdd.setImageBitmap(bitmap)
         }
     }
 
