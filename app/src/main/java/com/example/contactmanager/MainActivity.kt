@@ -1,6 +1,5 @@
 package com.example.contactmanager
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +18,8 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
 
 
         val arguments = intent.extras
-        if(arguments?.get("list")!=null ){
-         contactList = arguments.get("list") as ArrayList<Contact>
+        if(arguments?.get("listAdd")!=null ){
+         contactList = arguments.get("listAdd") as ArrayList<Contact>
         } else if(arguments?.get("listEdit")!= null) {
             contactList = arguments?.get("listEdit") as ArrayList<Contact>
         } else if(arguments?.get("listAllView")!= null) {
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
     override fun contactAllView(index: Int) {
         val contact = contactList[index]
         supportFragmentManager.beginTransaction()
-            .add(R.id.frameAllView, FragmentAllView.newInstance(contact,contactList)).addToBackStack(null).commit()
+            .add(R.id.frameAllView, FragmentAllView.newInstance(contactList,contact)).addToBackStack(null).commit()
     }
 
 }

@@ -44,7 +44,6 @@ class FragmentAllView : Fragment() {
         tvLastNameAllView.text = lastName
         tvEmailAllView.text = email
         tvPhoneAlliew.text = phone
-        ivAvatarAllView.setImageBitmap(avatar)
         btContactAllView.setOnClickListener {
             val inent = Intent(context,MainActivity::class.java)
             inent.putExtra("listAllView", list)
@@ -54,14 +53,13 @@ class FragmentAllView : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(contact: Contact, contactList: ArrayList<Contact>) =
+        fun newInstance(contactList: ArrayList<Contact>, contact: Contact) =
             FragmentAllView().apply {
                 name = contact.name.toString()
                 lastName = contact.lastName.toString()
                 email = contact.email.toString()
                 phone = contact.phone.toString()
                 list = contactList
-                avatar = contact.avatar as Bitmap
             }
     }
 }

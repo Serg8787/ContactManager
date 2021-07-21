@@ -2,7 +2,6 @@ package com.example.contactmanager
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -20,11 +19,9 @@ import kotlinx.android.synthetic.main.fragment_add_contact.*
  * create an instance of this fragment.
  */
 class FragmentAddContact : Fragment() {
-lateinit var list:ArrayList<Contact>
-    val GALLERY_REQUEST = 1
+    lateinit var list: ArrayList<Contact>
     val PICK_IMAGE = 100
-    val PICK_IMAGE2 = 101
-    lateinit var bitmap:Bitmap
+    lateinit var bitmap: Bitmap
 
 
 
@@ -47,44 +44,41 @@ lateinit var list:ArrayList<Contact>
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             startActivityForResult(photoPickerIntent, PICK_IMAGE)
-
-            Toast.makeText(context,"Зашли в галерию",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Зашли в галерию", Toast.LENGTH_LONG).show()
         }
 
 
         btAddContactAdd.setOnClickListener {
-
-            val bitmap:Bitmap = BitmapFactory.decodeResource(resources,R.drawable.icons8_two_points_48dp_green)
+//             Фото для теста. Все равное не передается
+//            bitmap = BitmapFactory.decodeResource(resources,R.drawable.mini1)
             val name = etNameAdd.text.toString()
             val lastName = etLastNameAdd.text.toString()
             val email = etEmailAdd.text.toString()
             val phone = etPhoneAdd.text.toString()
 
-            list.add(Contact(avatar = null, name = name,lastName,email,phone))
-            val intent = Intent(context,MainActivity::class.java)
-            intent.putExtra("list",list)
+            list.add(Contact(avatar = null, name = name, lastName, email, phone))
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("listAdd", list)
             startActivity(intent)
 
         }
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance(contactList: ArrayList<Contact>) =
             FragmentAddContact().apply {
                 list = contactList
-
             }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode== PICK_IMAGE && resultCode== AppCompatActivity.RESULT_OK){
+        if (requestCode == PICK_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageUri = data?.data
-            bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,imageUri)
+            bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, imageUri)
             ivAvatarAdd.setImageBitmap(bitmap)
-
         }
     }
 
-    }
+}
