@@ -44,10 +44,13 @@ class FragmentEdit : Fragment() {
             val name = etNameEdit.text.toString()
             val lastName = etLastNameEdit.text.toString()
             val email = etEmailEdit.text.toString()
+            val phone = etPhoneEdit.text.toString()
             list[position].name = name
             list[position].lastName = lastName
             list[position].email = email
             list[position].avatar = null
+            list[position].phone = phone
+
             val intent1 = Intent(context,MainActivity::class.java)
             intent1.putExtra("listEdit",list)
             startActivity(intent1)

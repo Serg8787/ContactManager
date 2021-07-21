@@ -8,5 +8,5 @@ class Contact(
     var name: String?,
     var lastName: String?,
     var email: String?,
-    val phone:String?
+    var phone:String?
     ) :Serializable
