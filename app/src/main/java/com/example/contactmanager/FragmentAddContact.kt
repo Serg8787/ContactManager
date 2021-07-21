@@ -1,11 +1,16 @@
 package com.example.contactmanager
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_add_contact.*
 
@@ -17,6 +22,10 @@ import kotlinx.android.synthetic.main.fragment_add_contact.*
  */
 class FragmentAddContact : Fragment() {
 lateinit var list:ArrayList<Contact>
+    val GALLERY_REQUEST = 1
+    val PICK_IMAGE = 100
+    val PICK_IMAGE2 = 101
+    lateinit var bitmap:Bitmap
 
 
 
@@ -35,14 +44,24 @@ lateinit var list:ArrayList<Contact>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ivAvatarAdd.setOnClickListener {
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, PICK_IMAGE)
+
+            Toast.makeText(context,"Зашли в галерию",Toast.LENGTH_LONG).show()
+        }
+
 
         btAddContactAdd.setOnClickListener {
+
+            val bitmap:Bitmap = BitmapFactory.decodeResource(resources,R.drawable.icons8_two_points_48dp_green)
             val name = etNameAdd.text.toString()
             val lastName = etLastNameAdd.text.toString()
             val email = etEmailAdd.text.toString()
             val phone = etPhoneAdd.text.toString()
 
-            list.add(Contact(null,name,lastName,email,phone))
+            list.add(Contact(avatar = null,name = name,lastName,email,phone))
             val intent = Intent(context,MainActivity::class.java)
             intent.putExtra("list",list)
             startActivity(intent)
@@ -51,19 +70,25 @@ lateinit var list:ArrayList<Contact>
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentAddContact.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(contactList: ArrayList<Contact>) =
             FragmentAddContact().apply {
                 list = contactList
+
             }
     }
-}
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode== PICK_IMAGE && resultCode== AppCompatActivity.RESULT_OK){
+            val imageUri = data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,imageUri)
+            ivAvatarAdd.setImageBitmap(bitmap)
+
+        } else if(requestCode==PICK_IMAGE2 && resultCode== AppCompatActivity.RESULT_OK){
+            bitmap = data?.extras?.get("data") as Bitmap
+            ivAvatarAdd.setImageBitmap(bitmap)
+        }
+    }
+
+    }

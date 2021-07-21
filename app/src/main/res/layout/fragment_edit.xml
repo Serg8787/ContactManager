@@ -20,6 +20,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:adjustViewBounds="true"
             android:src="@drawable/icons8_avatar_100"/>
         <EditText
             android:id="@+id/etNameEdit"

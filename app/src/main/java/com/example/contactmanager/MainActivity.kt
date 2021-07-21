@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
          contactList = arguments.get("list") as ArrayList<Contact>
         } else if(arguments?.get("listEdit")!= null) {
             contactList = arguments?.get("listEdit") as ArrayList<Contact>
+        } else if(arguments?.get("listAllView")!= null){
+            contactList = arguments?.get("listAllView") as ArrayList<Contact>
+
         }
 
 
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(), ContactCallBack {
     override fun contactAllView(index: Int) {
         val contact = contactList[index]
         supportFragmentManager.beginTransaction()
-            .add(R.id.frameAllView, FragmentAllView.newInstance(contact)).addToBackStack(null).commit()
+            .add(R.id.frameAllView, FragmentAllView.newInstance(contact,contactList)).addToBackStack(null).commit()
     }
 
 }

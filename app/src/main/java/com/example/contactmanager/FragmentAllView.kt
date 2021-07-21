@@ -1,13 +1,12 @@
 package com.example.contactmanager
 
+import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_all_view.*
-import java.lang.ref.PhantomReference
 
 
 /**
@@ -20,6 +19,8 @@ class FragmentAllView : Fragment() {
     lateinit var lastName:String
     lateinit var email:String
     lateinit var phone:String
+
+    lateinit var list:ArrayList<Contact>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +42,22 @@ class FragmentAllView : Fragment() {
         tvLastNameAllView.text = lastName
         tvEmailAllView.text = email
         tvPhoneAlliew.text = phone
+        btContactAllView.setOnClickListener {
+            val inent = Intent(context,MainActivity::class.java)
+            inent.putExtra("listAllView", list)
+            startActivity(inent)
+        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(contact: Contact) =
+        fun newInstance(contact: Contact, contactList: ArrayList<Contact>) =
             FragmentAllView().apply {
                 name = contact.name.toString()
                 lastName = contact.lastName.toString()
                 email = contact.email.toString()
                 phone = contact.phone.toString()
+                list = contactList
             }
-
     }
 }
